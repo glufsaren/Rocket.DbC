@@ -14,6 +14,52 @@ namespace Borderline.DbC.Test
 	[TestFixture]
 	public class IntConstraintsTest
 	{
+		[Test]
+		public void When_equal_expect_no_exception()
+		{
+			var obj = new
+			{
+				Property = 1
+			};
+
+			Require.That(() => obj.Property).Is.EqualTo(1);
+		}
+
+		[Test]
+		[ExpectedException(typeof(PreconditionException))]
+		public void When_not_equal_expect_exception()
+		{
+			var obj = new
+			{
+				Property = 2
+			};
+
+			Require.That(() => obj.Property).Is.EqualTo(1);
+		}
+
+		[Test]
+		[ExpectedException(typeof(PreconditionException))]
+		public void When_not_equal_expect_no_exception()
+		{
+			var obj = new
+			{
+				Property = 1
+			};
+
+			Require.That(() => obj.Property).IsNot.EqualTo(1);
+		}
+
+		[Test]
+		public void When_not_1()
+		{
+			var obj = new
+			{
+				Property = 2
+			};
+
+			Require.That(() => obj.Property).IsNot.EqualTo(1);
+		}
+
 		[TestCase(0)]
 		[TestCase(1)]
 		public void When_value_is_greater_than_or_equal_to_ge_constraint(int constraint)
@@ -36,6 +82,30 @@ namespace Borderline.DbC.Test
 			};
 
 			Require.That(() => obj.Property).Is.Ge(2);
+		}
+
+		[TestCase(0)]
+		[TestCase(1)]
+		[ExpectedException(typeof(PreconditionException))]
+		public void When_1(int constraint)
+		{
+			var obj = new
+			{
+				Property = 1
+			};
+
+			Require.That(() => obj.Property).IsNot.Ge(constraint);
+		}
+
+		[Test]
+		public void When_2()
+		{
+			var obj = new
+			{
+				Property = 1
+			};
+
+			Require.That(() => obj.Property).IsNot.Ge(2);
 		}
 
 	//	[Test]

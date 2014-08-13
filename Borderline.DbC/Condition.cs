@@ -17,14 +17,6 @@ namespace Borderline.DbC
 	{
 		private readonly List<Member<T>> members = new List<Member<T>>();
 
-		internal IEnumerable<Member<T>> Members
-		{
-			get
-			{
-				return members;
-			}
-		}
-
 		public Constraint<T> Is
 		{
 			get
@@ -38,6 +30,14 @@ namespace Borderline.DbC
 			get
 			{
 				return new Constraint<T>(this, true);
+			}
+		}
+
+		internal IEnumerable<Member<T>> Members
+		{
+			get
+			{
+				return members;
 			}
 		}
 

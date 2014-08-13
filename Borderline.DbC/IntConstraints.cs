@@ -16,6 +16,26 @@ namespace Borderline.DbC
 	/// </summary>
 	public static class IntConstraints
 	{
+		public static Operator<int> EqualTo(this Constraint<int> constraint, int value)
+		{
+			Func<Member<int>, bool> predicate;
+			Func<Member<int>, Exception> exceptionFactory = member
+				=> new PreconditionException(member.Name);
+
+			if (!constraint.Negate)
+			{
+				predicate = member =>
+					member.Value == value;
+			}
+			else
+			{
+				predicate = member =>
+					member.Value != value;
+			}
+
+			return constraint.Evaluate(predicate, exceptionFactory);
+		}
+
 		/// <summary>
 		/// Apply a "greater than or equal" constraint to the member value.
 		/// </summary>

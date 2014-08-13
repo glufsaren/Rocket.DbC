@@ -194,17 +194,75 @@ namespace Borderline.DbC.Test
 			Require.That(() => obj.Text).IsNot.EqualTo("Hej Värld!");
 		}
 
-		//[Test]
-		//[ExpectedException(typeof(ArgumentNullException))]
-		//public void When_text_is_null_expect_exception()
-		//{
-		//	var obj = new
-		//				  {
-		//					  Text = (string)null
-		//				  };
+		[Test]
+		public void When_And()
+		{
+			var obj = new
+						  {
+							  Text = "Hello World!"
+						  };
 
-		//	Require.That(() => obj.Text).IsNotNull().And.IsNotEmpty();
-		//}
+			Require.That(() => obj.Text).IsNot.Null().And.IsNot.Empty();
+		}
+
+		[Test]
+		public void When_Or()
+		{
+			var obj = new
+			{
+				Text = "APA"
+			};
+
+			Require.That(() => obj.Text).IsNot.Null().Or(c => c.IsNot.Empty());
+		}
+
+		[Test]
+		[ExpectedException(typeof(ArgumentNullException))]
+		public void When_Or_1()
+		{
+			var obj = new
+			{
+				Text = (string)null
+			};
+
+			Require.That(() => obj.Text).IsNot.Null().Or(c => c.IsNot.Empty());
+		}
+
+		[TestCase("")]
+		[TestCase("  ")]
+		[ExpectedException(typeof(ArgumentException))]
+		public void When_Or_2(string text)
+		{
+			var obj = new
+			{
+				Text = text
+			};
+
+			Require.That(() => obj.Text).IsNot.Null().Or(c => c.IsNot.Empty());
+		}
+
+		[TestCase("")]
+		[TestCase("  ")]
+		public void When_Or_3(string text)
+		{
+			var obj = new
+			{
+				Text = text
+			};
+
+			Require.That(() => obj.Text).Is.Null().Or(c => c.Is.Empty());
+		}
+
+		[Test]
+		public void When_Or_4()
+		{
+			var obj = new
+			{
+				Text = (string)null
+			};
+
+			Require.That(() => obj.Text).Is.Null().Or(c => c.Is.Empty());
+		}
 
 		//[TestCase("")]
 		//[TestCase(" ")]

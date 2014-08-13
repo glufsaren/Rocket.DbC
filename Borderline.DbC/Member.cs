@@ -11,8 +11,6 @@ namespace Borderline.DbC
 {
 	public class Member<T>
 	{
-		////public Operator<T> Operator { get; set; }
-
 		public string Name { get; set; }
 
 		public T Value { get; set; }

@@ -24,29 +24,35 @@ namespace Borderline.DbC
 
 		private Condition<T> Condition { get; set; }
 
-		internal Operator<string> Or(Operator<string> operator1, Operator<string> operator2)
+		// TODO: Refactor
+		internal Operator<T> Or(params Operator<T>[] operator1)
 		{
+			if (operator1 == null || !operator1.Any())
+			{
+				// TODO: Messsage
+				throw new ArgumentException();
+			}
+
 			if (!Negate)
 			{
-				if (operator1.Result || operator2.Result)
+				var o = operator1.FirstOrDefault(x => x.Result);
+
+				if (o != null)
 				{
-					return operator1;
+					return o;
 				}
 
-				throw operator1.Exception;
+				throw operator1.First().Exception;
 			}
 
-			if (!operator1.Result)
+			var oo = operator1.FirstOrDefault(x => !x.Result);
+
+			if (oo != null)
 			{
-				throw operator1.Exception;
+				throw oo.Exception;
 			}
 
-			if (!operator2.Result)
-			{
-				throw operator2.Exception;
-			}
-
-			return operator1;
+			return operator1.First();
 		}
 
 		internal Operator<T> Evaluate(

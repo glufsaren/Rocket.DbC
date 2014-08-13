@@ -18,16 +18,12 @@ namespace Borderline.DbC
 		public Operator(Condition<T> condition)
 		{
 			this.condition = condition;
-
-			////condition.Operator = this;
 		}
 
 		public Condition<T> And
 		{
 			get
 			{
-				////Type = "AND";
-
 				return condition;
 			}
 		}
@@ -36,24 +32,12 @@ namespace Borderline.DbC
 
 		public Exception Exception { get; set; }
 
-		////private string Type { get; set; }
+		public void Or(Func<Condition<T>, Operator<T>> func)
+		{
+			var operator1 = this;
+			var operator2 = func(condition);
 
-		////public members<T> Or
-		////{
-		////    get
-		////    {
-		////        Type = "OR";
 
-		////        return condition;
-		////    }
-		////}
-
-		////internal Member<T> Constraint
-		////{
-		////	get
-		////	{
-		////		return condition;
-		////	}
-		////}
+		}
 	}
 }
