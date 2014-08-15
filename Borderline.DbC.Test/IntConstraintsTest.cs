@@ -176,6 +176,104 @@ namespace Borderline.DbC.Test
 			Require.That(() => obj.Property).IsNot.Gt(2);
 		}
 
+
+		[Test]
+		[ExpectedException(typeof(PreConditionException))]
+		public void When_le_a()
+		{
+			var obj = new
+			{
+				Property = 2
+			};
+
+			Require.That(() => obj.Property).Is.Le(1);
+		}
+
+		[TestCase(1)]
+		[TestCase(2)]
+		public void When_le_b(int value)
+		{
+			var obj = new
+			{
+				Property = value
+			};
+
+			Require.That(() => obj.Property).Is.Le(2);
+		}
+
+		[Test]
+		public void When_le_c()
+		{
+			var obj = new
+			{
+				Property = 2
+			};
+
+			Require.That(() => obj.Property).IsNot.Le(1);
+		}
+
+		[TestCase(1)]
+		[TestCase(2)]
+		[ExpectedException(typeof(PreConditionException))]
+		public void When_le_d(int value)
+		{
+			var obj = new
+			{
+				Property = value
+			};
+
+			Require.That(() => obj.Property).IsNot.Le(2);
+		}
+
+		[TestCase(1)]
+		[TestCase(2)]
+		[ExpectedException(typeof(PreConditionException))]
+		public void When_lt_a(int value)
+		{
+			var obj = new
+			{
+				Property = value
+			};
+
+			Require.That(() => obj.Property).Is.Lt(1);
+		}
+
+		[Test]
+		public void When_lt_b()
+		{
+			var obj = new
+			{
+				Property = 1
+			};
+
+			Require.That(() => obj.Property).Is.Lt(2);
+		}
+
+		[Test]
+		[ExpectedException(typeof(PreConditionException))]
+		public void When_lt_c()
+		{
+			var obj = new
+			{
+				Property = 1
+			};
+
+			Require.That(() => obj.Property).IsNot.Lt(2);
+		}
+
+		[TestCase(2)]
+		[TestCase(3)]
+		public void When_lt_d(int value)
+		{
+			var obj = new
+			{
+				Property = value
+			};
+
+			Require.That(() => obj.Property).IsNot.Lt(2);
+		}
+
+
 	//	[Test]
 	//	public void When_value_is_greater_than_gt_constraint()
 	//	{
