@@ -16,33 +16,34 @@ namespace Borderline.DbC
 	{
 		public static Operator<string> NullOrEmpty(this Constraint<string> constraint)
 		{
+			constraint.Throw = false;
+
 			return constraint.Or(
-				Null(constraint, false), Empty(constraint, false));
+				Null(constraint), Empty(constraint));
 		}
 
 		public static Operator<string> Empty(this Constraint<string> constraint)
 		{
-			return Empty(constraint, true);
+			Func<Member<string>, bool> predicate;
+
+			if (!constraint.Negate)
+			{
+				predicate = member =>
+					IsEmptyOrWhiteSpace(member.Value);
+			}
+			else
+			{
+				predicate = member =>
+					!IsEmptyOrWhiteSpace(member.Value);
+			}
+
+			Func<Member<string>, Exception> exceptionFactory =
+				member => new ArgumentException("Precondition failed.", member.Name);
+
+			return constraint.Evaluate(predicate, exceptionFactory, constraint.Throw);
 		}
 
 		public static Operator<string> Null(this Constraint<string> constraint)
-		{
-			return Null(constraint, true);
-		}
-
-		public static Operator<string> EqualTo(this Constraint<string> constraint, string value)
-		{
-			Func<Member<string>, bool> predicate = member => member.Value == value;
-
-			if (constraint.Negate)
-			{
-				predicate = member => member.Value != value;
-			}
-
-			return constraint.Evaluate(predicate, member => new PreconditionException(member.Name));
-		}
-
-		private static Operator<string> Null(this Constraint<string> constraint, bool @throw)
 		{
 			Func<Member<string>, bool> predicate;
 			Func<Member<string>, Exception> exceptionFactory;
@@ -64,28 +65,19 @@ namespace Borderline.DbC
 					new ArgumentNullException(member.Name);
 			}
 
-			return constraint.Evaluate(predicate, exceptionFactory, @throw);
+			return constraint.Evaluate(predicate, exceptionFactory, constraint.Throw);
 		}
 
-		private static Operator<string> Empty(this Constraint<string> constraint, bool @throw)
+		public static Operator<string> EqualTo(this Constraint<string> constraint, string value)
 		{
-			Func<Member<string>, bool> predicate;
+			Func<Member<string>, bool> predicate = member => member.Value == value;
 
-			if (!constraint.Negate)
+			if (constraint.Negate)
 			{
-				predicate = member =>
-					IsEmptyOrWhiteSpace(member.Value);
-			}
-			else
-			{
-				predicate = member =>
-					!IsEmptyOrWhiteSpace(member.Value);
+				predicate = member => member.Value != value;
 			}
 
-			Func<Member<string>, Exception> exceptionFactory =
-				member => new ArgumentException("Precondition failed.", member.Name);
-
-			return constraint.Evaluate(predicate, exceptionFactory, @throw);
+			return constraint.Evaluate(predicate, member => new PreconditionException(member.Name));
 		}
 
 		private static bool IsEmptyOrWhiteSpace(string value)

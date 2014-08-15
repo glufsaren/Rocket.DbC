@@ -9,6 +9,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 
 namespace Borderline.DbC
@@ -17,11 +18,13 @@ namespace Borderline.DbC
 	{
 		private readonly List<Member<T>> members = new List<Member<T>>();
 
+		private bool @throw = true;
+
 		public Constraint<T> Is
 		{
 			get
 			{
-				return new Constraint<T>(this);
+				return new Constraint<T>(this) { Throw = @throw };
 			}
 		}
 
@@ -29,7 +32,7 @@ namespace Borderline.DbC
 		{
 			get
 			{
-				return new Constraint<T>(this, true);
+				return new Constraint<T>(this, true) { Throw = @throw };
 			}
 		}
 
@@ -39,6 +42,21 @@ namespace Borderline.DbC
 			{
 				return members;
 			}
+		}
+
+		public void Or(params Func<Condition<T>, Operator<T>>[] func)
+		{
+			if (func == null || !func.Any())
+			{
+				throw new ArgumentException("No Constraints specified.");
+			}
+
+			@throw = false;
+
+			var constraint = new Constraint<T>(this) { Throw = false };
+
+			constraint.Or(
+				func.Select(f => f(this)).ToArray());
 		}
 
 		public Condition<T> And(Expression<Func<T>> memberExpression)

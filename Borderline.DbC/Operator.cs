@@ -31,13 +31,5 @@ namespace Borderline.DbC
 		public bool Result { get; set; }
 
 		public Exception Exception { get; set; }
-
-		public void Or(Func<Condition<T>, Operator<T>> func)
-		{
-			var operator1 = this;
-			var operator2 = func(condition);
-
-
-		}
 	}
 }

@@ -18,41 +18,43 @@ namespace Borderline.DbC
 		{
 			Condition = condition;
 			Negate = negate;
+			Throw = true;
 		}
 
 		internal bool Negate { get; private set; }
 
+		internal bool Throw { get; set; }
+
 		private Condition<T> Condition { get; set; }
 
 		// TODO: Refactor
-		internal Operator<T> Or(params Operator<T>[] operator1)
+		internal Operator<T> Or(params Operator<T>[] operators)
 		{
-			if (operator1 == null || !operator1.Any())
+			if (operators == null || !operators.Any())
 			{
-				// TODO: Messsage
-				throw new ArgumentException();
+				throw new ArgumentException("No Constraints specified.");
 			}
 
 			if (!Negate)
 			{
-				var o = operator1.FirstOrDefault(x => x.Result);
+				var firstOperator = operators.FirstOrDefault(x => x.Result);
 
-				if (o != null)
+				if (firstOperator != null)
 				{
-					return o;
+					return firstOperator;
 				}
 
-				throw operator1.First().Exception;
+				throw operators.First().Exception;
 			}
 
-			var oo = operator1.FirstOrDefault(x => !x.Result);
+			var oo = operators.FirstOrDefault(x => !x.Result);
 
 			if (oo != null)
 			{
 				throw oo.Exception;
 			}
 
-			return operator1.First();
+			return operators.First();
 		}
 
 		internal Operator<T> Evaluate(

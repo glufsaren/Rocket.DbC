@@ -213,11 +213,12 @@ namespace Borderline.DbC.Test
 				Text = "APA"
 			};
 
-			Require.That(() => obj.Text).IsNot.Null().Or(c => c.IsNot.Empty());
+			////Require.That(() => obj.Text).IsNot.Null().Or(c => c.IsNot.Empty());
+
+			Require.That(() => obj.Text).Or(c => c.IsNot.Null(), c => c.IsNot.Empty());
 		}
 
 		[Test]
-		[ExpectedException(typeof(ArgumentNullException))]
 		public void When_Or_1()
 		{
 			var obj = new
@@ -225,12 +226,12 @@ namespace Borderline.DbC.Test
 				Text = (string)null
 			};
 
-			Require.That(() => obj.Text).IsNot.Null().Or(c => c.IsNot.Empty());
+			////Require.That(() => obj.Text).IsNot.Null().Or(c => c.IsNot.Empty());
+			Require.That(() => obj.Text).Or(c => c.IsNot.Null(), c => c.IsNot.Empty());
 		}
 
 		[TestCase("")]
 		[TestCase("  ")]
-		[ExpectedException(typeof(ArgumentException))]
 		public void When_Or_2(string text)
 		{
 			var obj = new
@@ -238,7 +239,8 @@ namespace Borderline.DbC.Test
 				Text = text
 			};
 
-			Require.That(() => obj.Text).IsNot.Null().Or(c => c.IsNot.Empty());
+			////Require.That(() => obj.Text).IsNot.Null().Or(c => c.IsNot.Empty());
+			Require.That(() => obj.Text).Or(c => c.IsNot.Null(), c => c.IsNot.Empty());
 		}
 
 		[TestCase("")]
@@ -250,7 +252,8 @@ namespace Borderline.DbC.Test
 				Text = text
 			};
 
-			Require.That(() => obj.Text).Is.Null().Or(c => c.Is.Empty());
+			////Require.That(() => obj.Text).Is.Null().Or(c => c.Is.Empty());
+			Require.That(() => obj.Text).Or(c => c.Is.Null(), c => c.Is.Empty());
 		}
 
 		[Test]
@@ -261,7 +264,8 @@ namespace Borderline.DbC.Test
 				Text = (string)null
 			};
 
-			Require.That(() => obj.Text).Is.Null().Or(c => c.Is.Empty());
+			//Require.That(() => obj.Text).Is.Null().Or(c => c.Is.Empty());
+			Require.That(() => obj.Text).Or(c => c.Is.Null(), c => c.Is.Empty());
 		}
 
 		//[TestCase("")]
