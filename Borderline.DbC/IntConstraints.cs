@@ -95,13 +95,26 @@ namespace Borderline.DbC
 		/// <param name="member">The member.</param>
 		/// <param name="value">The constraint value.</param>
 		/// <exception cref="PreConditionException">When the member value is less than the allowed value.</exception>
-		//public static Operator<int> Le(this Constraint<int> constraint, int value)
-		//{
-		//	if (member.Value > value)
-		//		throw new PreConditionException(member.Name);
+		public static Operator<int> Le(this Constraint<int> constraint, int value)
+		{
+			Func<Member<int>, bool> predicate;
+			Func<Member<int>, Exception> exceptionFactory = member
+				=> new PreConditionException(member.Name);
 
-		//	return member;
-		//}
+			if (!constraint.Negate)
+			{
+				predicate = member =>
+					member.Value < value;
+			}
+			else
+			{
+				predicate = member =>
+					member.Value >= value;
+			}
+
+			return constraint.Evaluate(
+				predicate, exceptionFactory, constraint.Throw);
+		}
 
 		/// <summary>
 		/// 
