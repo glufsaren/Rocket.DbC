@@ -54,7 +54,7 @@ namespace Borderline.DbC
 					member.Value == null;
 
 				exceptionFactory = member =>
-					new PreconditionException(member.Name);
+					new PreConditionException(member.Name);
 			}
 			else
 			{
@@ -77,7 +77,10 @@ namespace Borderline.DbC
 				predicate = member => member.Value != value;
 			}
 
-			return constraint.Evaluate(predicate, member => new PreconditionException(member.Name));
+			return constraint.Evaluate(
+				predicate,
+				member => new PreConditionException(member.Name),
+				constraint.Throw);
 		}
 
 		private static bool IsEmptyOrWhiteSpace(string value)

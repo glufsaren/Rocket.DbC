@@ -64,7 +64,7 @@ namespace Borderline.DbC.Test
 		}
 
 		[Test]
-		[ExpectedException(typeof(PreconditionException))]
+		[ExpectedException(typeof(PreConditionException))]
 		public void When_2()
 		{
 			var obj = new
@@ -137,7 +137,7 @@ namespace Borderline.DbC.Test
 		}
 
 		[Test]
-		[ExpectedException(typeof(PreconditionException))]
+		[ExpectedException(typeof(PreConditionException))]
 		public void When_8()
 		{
 			var obj = new
@@ -160,7 +160,7 @@ namespace Borderline.DbC.Test
 		}
 
 		[Test]
-		[ExpectedException(typeof(PreconditionException))]
+		[ExpectedException(typeof(PreConditionException))]
 		public void When_10()
 		{
 			var obj = new
@@ -172,7 +172,7 @@ namespace Borderline.DbC.Test
 		}
 
 		[Test]
-		[ExpectedException(typeof(PreconditionException))]
+		[ExpectedException(typeof(PreConditionException))]
 		public void When_11()
 		{
 			var obj = new
@@ -282,7 +282,7 @@ namespace Borderline.DbC.Test
 		//}
 
 		////[TestCase("Not")]
-		////[ExpectedException(typeof(PreconditionException))]
+		////[ExpectedException(typeof(PreConditionException))]
 		////public void When_text_is_not_equal_to_expected_expect_exception(string value)
 		////{
 		////    var obj = new

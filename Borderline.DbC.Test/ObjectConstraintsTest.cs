@@ -15,7 +15,7 @@ namespace Borderline.DbC.Test
 	public class ObjectConstraintsTest
 	{
 		[Test]
-		[ExpectedException(typeof(PreconditionException))]
+		[ExpectedException(typeof(PreConditionException))]
 		public void When_1()
 		{
 			var obj = new
@@ -49,7 +49,7 @@ namespace Borderline.DbC.Test
 		}
 
 		[Test]
-		[ExpectedException(typeof(PreconditionException))]
+		[ExpectedException(typeof(PreConditionException))]
 		public void When_4()
 		{
 			var obj = new

@@ -22,7 +22,7 @@ namespace Borderline.DbC
 		{
 			Func<Member<object>, bool> predicate;
 			Func<Member<object>, Exception> exceptionFactory = member
-				=> new PreconditionException(member.Name);
+				=> new PreConditionException(member.Name);
 
 			if (!constraint.Negate)
 			{

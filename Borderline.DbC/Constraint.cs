@@ -60,7 +60,7 @@ namespace Borderline.DbC
 		internal Operator<T> Evaluate(
 								Func<Member<T>, bool> predicate,
 								Func<Member<T>, Exception> exceptionFactory,
-								bool @throw = true)
+								bool @throw)
 		{
 			var @operator = new Operator<T>(Condition);
 

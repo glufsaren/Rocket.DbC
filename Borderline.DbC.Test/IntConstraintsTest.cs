@@ -26,7 +26,7 @@ namespace Borderline.DbC.Test
 		}
 
 		[Test]
-		[ExpectedException(typeof(PreconditionException))]
+		[ExpectedException(typeof(PreConditionException))]
 		public void When_not_equal_expect_exception()
 		{
 			var obj = new
@@ -38,7 +38,7 @@ namespace Borderline.DbC.Test
 		}
 
 		[Test]
-		[ExpectedException(typeof(PreconditionException))]
+		[ExpectedException(typeof(PreConditionException))]
 		public void When_not_equal_expect_no_exception()
 		{
 			var obj = new
@@ -73,7 +73,7 @@ namespace Borderline.DbC.Test
 		}
 
 		[Test]
-		[ExpectedException(typeof(PreconditionException))]
+		[ExpectedException(typeof(PreConditionException))]
 		public void When_value_is_not_greater_than_or_equal_to_ge_constraint()
 		{
 			var obj = new
@@ -86,7 +86,7 @@ namespace Borderline.DbC.Test
 
 		[TestCase(0)]
 		[TestCase(1)]
-		[ExpectedException(typeof(PreconditionException))]
+		[ExpectedException(typeof(PreConditionException))]
 		public void When_1(int constraint)
 		{
 			var obj = new
@@ -108,12 +108,73 @@ namespace Borderline.DbC.Test
 			Require.That(() => obj.Property).IsNot.Ge(2);
 		}
 
-	//	[Test]
-	//	[ExpectedException(typeof(PreconditionException))]
-	//	public void When_value_is_less_than_ge_constraint()
-	//	{
-	//		Require.That(() => new { Id = 1 }.Id).Ge(2);
-	//	}
+		[Test]
+		public void When_()
+		{
+			var obj = new
+			{
+				Property = 5
+			};
+
+			Require.That(() => obj.Property).Or(c => c.Is.EqualTo(5), c => c.Is.EqualTo(10));
+		}
+
+		[Test]
+		public void When_1()
+		{
+			var obj = new
+			{
+				Property = 5
+			};
+
+			Require.That(() => obj.Property).Or(c => c.Is.EqualTo(5), c => c.IsNot.EqualTo(10));
+		}
+
+		[Test]
+		[ExpectedException(typeof(PreConditionException))]
+		public void When_value_is_less_than_ge_constraint()
+		{
+			var obj = new
+			{
+				Property = 1
+			};
+
+			Require.That(() => obj.Property).Is.Gt(2);
+		}
+
+		[Test]
+		public void When_value_is_less_than_ge_constraint_3()
+		{
+			var obj = new
+			{
+				Property = 3
+			};
+
+			Require.That(() => obj.Property).Is.Gt(2);
+		}
+
+		[Test]
+		public void When_value_is_less_than_ge_constraint_2()
+		{
+			var obj = new
+			{
+				Property = 1
+			};
+
+			Require.That(() => obj.Property).IsNot.Gt(2);
+		}
+
+		[Test]
+		[ExpectedException(typeof(PreConditionException))]
+		public void When_value_is_less_than_ge_constraint_4()
+		{
+			var obj = new
+			{
+				Property = 3
+			};
+
+			Require.That(() => obj.Property).IsNot.Gt(2);
+		}
 
 	//	[Test]
 	//	public void When_value_is_greater_than_gt_constraint()
@@ -123,7 +184,7 @@ namespace Borderline.DbC.Test
 
 	//	[TestCase(1)]
 	//	[TestCase(2)]
-	//	[ExpectedException(typeof(PreconditionException))]
+	//	[ExpectedException(typeof(PreConditionException))]
 	//	public void When_value_is_less_than_or_equal_to_gt_constraint(int constraint)
 	//	{
 	//		Require.That(() => new { Id = 1 }.Id).Gt(constraint);
@@ -137,7 +198,7 @@ namespace Borderline.DbC.Test
 	//	}
 
 	//	[Test]
-	//	[ExpectedException(typeof(PreconditionException))]
+	//	[ExpectedException(typeof(PreConditionException))]
 	//	public void When_value_is_greater_than_lge_constraint()
 	//	{
 	//		Require.That(() => new { Id = 2 }.Id).Le(1);
@@ -151,7 +212,7 @@ namespace Borderline.DbC.Test
 
 	//	[TestCase(0)]
 	//	[TestCase(1)]
-	//	[ExpectedException(typeof(PreconditionException))]
+	//	[ExpectedException(typeof(PreConditionException))]
 	//	public void When_value_is_greater_than_or_equal_to_lt_constraint(int constraint)
 	//	{
 	//		Require.That(() => new { Id = 1 }.Id).Lt(constraint);
@@ -172,7 +233,7 @@ namespace Borderline.DbC.Test
 	//	}
 
 	//	[Test]
-	//	[ExpectedException(typeof(PreconditionException))]
+	//	[ExpectedException(typeof(PreConditionException))]
 	//	public void When_value_is_not_between_between_constraint()
 	//	{
 	//		Require.That(() => new { Id = 4 }.Id).Between(2, 3);

@@ -20,7 +20,7 @@ namespace Borderline.DbC
 		{
 			Func<Member<int>, bool> predicate;
 			Func<Member<int>, Exception> exceptionFactory = member
-				=> new PreconditionException(member.Name);
+				=> new PreConditionException(member.Name);
 
 			if (!constraint.Negate)
 			{
@@ -33,7 +33,7 @@ namespace Borderline.DbC
 					member.Value != value;
 			}
 
-			return constraint.Evaluate(predicate, exceptionFactory);
+			return constraint.Evaluate(predicate, exceptionFactory, constraint.Throw);
 		}
 
 		/// <summary>
@@ -41,12 +41,12 @@ namespace Borderline.DbC
 		/// </summary>
 		/// <param name="member">The member.</param>
 		/// <param name="value">The constraint value.</param>
-		/// <exception cref="PreconditionException">When the member value is less than the allowed value.</exception>
+		/// <exception cref="PreConditionException">When the member value is less than the allowed value.</exception>
 		public static Operator<int> Ge(this Constraint<int> constraint, int value)
 		{
 			Func<Member<int>, bool> predicate;
 			Func<Member<int>, Exception> exceptionFactory = member
-				=> new PreconditionException(member.Name);
+				=> new PreConditionException(member.Name);
 
 			if (!constraint.Negate)
 			{
@@ -59,7 +59,7 @@ namespace Borderline.DbC
 					member.Value < value;
 			}
 
-			return constraint.Evaluate(predicate, exceptionFactory);
+			return constraint.Evaluate(predicate, exceptionFactory, constraint.Throw);
 		}
 		
 		/// <summary>
@@ -67,25 +67,38 @@ namespace Borderline.DbC
 		/// </summary>
 		/// <param name="member">The member.</param>
 		/// <param name="value">The constraint value.</param>
-		/// <exception cref="PreconditionException">When the member value is less than or equal to the allowed value.</exception>
-		//public static Operator<int> Gt(this Constraint<int> constraint, int value)
-		//{
-		//	if (member.Value <= value)
-		//		throw new PreconditionException(member.Name);
+		/// <exception cref="PreConditionException">When the member value is less than or equal to the allowed value.</exception>
+		public static Operator<int> Gt(this Constraint<int> constraint, int value)
+		{
+			Func<Member<int>, bool> predicate;
+			Func<Member<int>, Exception> exceptionFactory = member
+				=> new PreConditionException(member.Name);
 
-		//	return member;
-		//}
+			if (!constraint.Negate)
+			{
+				predicate = member =>
+					member.Value > value;
+			}
+			else
+			{
+				predicate = member =>
+					member.Value <= value;
+			}
+
+			return constraint.Evaluate(
+				predicate, exceptionFactory, constraint.Throw);
+		}
 
 		/// <summary>
 		/// 
 		/// </summary>
 		/// <param name="member">The member.</param>
 		/// <param name="value">The constraint value.</param>
-		/// <exception cref="PreconditionException">When the member value is less than the allowed value.</exception>
+		/// <exception cref="PreConditionException">When the member value is less than the allowed value.</exception>
 		//public static Operator<int> Le(this Constraint<int> constraint, int value)
 		//{
 		//	if (member.Value > value)
-		//		throw new PreconditionException(member.Name);
+		//		throw new PreConditionException(member.Name);
 
 		//	return member;
 		//}
@@ -95,11 +108,11 @@ namespace Borderline.DbC
 		/// </summary>
 		/// <param name="member">The member.</param>
 		/// <param name="value">The constraint value.</param>
-		/// <exception cref="PreconditionException">When the member value is less than the allowed value.</exception>
+		/// <exception cref="PreConditionException">When the member value is less than the allowed value.</exception>
 		//public static Operator<int> Lt(this Constraint<int> constraint, int value)
 		//{
 		//	if (member.Value >= value)
-		//		throw new PreconditionException(member.Name);
+		//		throw new PreConditionException(member.Name);
 
 		//	return member;
 		//}
