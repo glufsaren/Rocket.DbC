@@ -1,1 +1,10 @@
-<StyleCopSettings Version="105" />
+<StyleCopSettings Version="105">
+  <GlobalSettings>
+    <CollectionProperty Name="RecognizedWords">
+      <Value>Postcondition</Value>
+      <Value>Postconditions</Value>
+      <Value>Precondition</Value>
+      <Value>Preconditions</Value>
+    </CollectionProperty>
+  </GlobalSettings>
+</StyleCopSettings>

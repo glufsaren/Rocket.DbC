@@ -12,9 +12,13 @@ using System.Linq;
 
 namespace Borderline.DbC
 {
+	/// <summary>
+	/// Encapsulates information used for evaluating constraints.
+	/// </summary>
+	/// <typeparam name="T">The type of the property to evaluate.</typeparam>
 	public class Constraint<T>
 	{
-		public Constraint(Condition<T> condition, bool negate = false)
+		internal Constraint(Condition<T> condition, bool negate = false)
 		{
 			Condition = condition;
 			Negate = negate;
@@ -25,9 +29,8 @@ namespace Borderline.DbC
 
 		internal bool Throw { get; set; }
 
-		private Condition<T> Condition { get; set; }
+		internal Condition<T> Condition { get; private set; }
 
-		// TODO: Refactor
 		internal Operator<T> Or(params Operator<T>[] operators)
 		{
 			if (operators == null || !operators.Any())
@@ -35,26 +38,9 @@ namespace Borderline.DbC
 				throw new ArgumentException("No Constraints specified.");
 			}
 
-			if (!Negate)
-			{
-				var firstOperator = operators.FirstOrDefault(x => x.Result);
-
-				if (firstOperator != null)
-				{
-					return firstOperator;
-				}
-
-				throw operators.First().Exception;
-			}
-
-			var oo = operators.FirstOrDefault(x => !x.Result);
-
-			if (oo != null)
-			{
-				throw oo.Exception;
-			}
-
-			return operators.First();
+			return !Negate
+				? EvaluateOperators(operators)
+				: EvaluateNegatedOperators(operators);
 		}
 
 		internal Operator<T> Evaluate(
@@ -82,6 +68,30 @@ namespace Borderline.DbC
 			@operator.Result = true;
 
 			return @operator;
+		}
+
+		private static Operator<T> EvaluateOperators(Operator<T>[] operators)
+		{
+			var @operator = operators.FirstOrDefault(o => o.Result);
+
+			if (@operator != null)
+			{
+				return @operator;
+			}
+
+			throw operators.First().Exception;
+		}
+
+		private static Operator<T> EvaluateNegatedOperators(Operator<T>[] operators)
+		{
+			var @operator = operators.FirstOrDefault(o => !o.Result);
+
+			if (@operator != null)
+			{
+				throw @operator.Exception;
+			}
+
+			return operators.First();
 		}
 	}
 }

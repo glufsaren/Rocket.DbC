@@ -1,25 +1,21 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="Require.cs" company="Borderline Studios">
+// <copyright file="PostCondition.cs" company="Borderline Studios">
 //   Copyright © Borderline Studios. All rights reserved.
 // </copyright>
 // <summary>
-//   Defines the Require type.
+//   Defines the PostCondition type.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
 using System;
-using System.Linq.Expressions;
 
 namespace Borderline.DbC
 {
-	/// <summary>
-	/// Use <see cref="Require"/> for validation of Postconditions.
-	/// </summary>
-	public static class Require
+	internal class PostCondition<T> : Condition<T>
 	{
-		public static Condition<T> That<T>(Expression<Func<T>> memberExpression)
+		internal override Exception CreateException(string memberName)
 		{
-			return new PreCondition<T>().And(memberExpression);
+			return new PostConditionException(memberName);
 		}
 	}
 }

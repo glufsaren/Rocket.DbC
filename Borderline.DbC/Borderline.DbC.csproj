@@ -20,6 +20,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\Borderline.DbC.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -28,6 +29,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\Borderline.DbC.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -47,7 +49,9 @@
     <Compile Include="Member.cs" />
     <Compile Include="ObjectConstraints.cs" />
     <Compile Include="Operator.cs" />
+    <Compile Include="PostCondition.cs" />
     <Compile Include="PostConditionException.cs" />
+    <Compile Include="PreCondition.cs" />
     <Compile Include="PreConditionException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Require.cs" />

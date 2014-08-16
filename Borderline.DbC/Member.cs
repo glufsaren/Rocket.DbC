@@ -9,7 +9,7 @@
 
 namespace Borderline.DbC
 {
-	public class Member<T>
+	internal class Member<T>
 	{
 		public string Name { get; set; }
 

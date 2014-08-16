@@ -14,12 +14,22 @@ using System.Linq.Expressions;
 
 namespace Borderline.DbC
 {
-	public class Condition<T>
+	/// <summary>
+	/// Base class for the different condition types.
+	/// </summary>
+	/// <typeparam name="T">The type of the property to evaluate.</typeparam>
+	public abstract class Condition<T>
 	{
 		private readonly List<Member<T>> members = new List<Member<T>>();
 
 		private bool @throw = true;
 
+		/// <summary>
+		/// Gets a <see cref="Constraint{T}"/> for evaluation.
+		/// </summary>
+		/// <value>
+		/// The <see cref="Constraint{T}"/>.
+		/// </value>
 		public Constraint<T> Is
 		{
 			get
@@ -28,6 +38,12 @@ namespace Borderline.DbC
 			}
 		}
 
+		/// <summary>
+		/// Gets a negated <see cref="Constraint{T}"/> for evaluation.
+		/// </summary>
+		/// <value>
+		/// The <see cref="Constraint{T}"/>.
+		/// </value>
 		public Constraint<T> IsNot
 		{
 			get
@@ -44,6 +60,11 @@ namespace Borderline.DbC
 			}
 		}
 
+		/// <summary>
+		/// Perform an or evaluation for the specified constraints.
+		/// </summary>
+		/// <param name="func">The constraints.</param>
+		/// <exception cref="System.ArgumentException">When no Constraints specified.</exception>
 		public void Or(params Func<Condition<T>, Operator<T>>[] func)
 		{
 			if (func == null || !func.Any())
@@ -59,6 +80,12 @@ namespace Borderline.DbC
 				func.Select(f => f(this)).ToArray());
 		}
 
+		/// <summary>
+		/// Chains multiple properties for evaluation.
+		/// </summary>
+		/// <param name="memberExpression">The member expression.</param>
+		/// <returns>A <see cref="Condition{T}"/> for chaining.</returns>
+		/// <exception cref="System.ArgumentNullException">If <see cref="memberExpression"/> is null.</exception>
 		public Condition<T> And(Expression<Func<T>> memberExpression)
 		{
 			if (memberExpression == null)
@@ -72,6 +99,8 @@ namespace Borderline.DbC
 
 			return this;
 		}
+
+		internal abstract Exception CreateException(string memberName);
 
 		private static Member<T> CreateMember(Expression<Func<T>> memberExpression)
 		{

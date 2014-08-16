@@ -12,8 +12,17 @@ using System.Linq;
 
 namespace Borderline.DbC
 {
+	/// <summary>
+	/// Defines contract constraints for <see cref="string"/>.
+	/// </summary>
 	public static class StringConstraints
 	{
+		/// <summary>
+		/// Evaluates if a <see cref="string"/> is null or empty. 
+		/// If negated the  <see cref="string"/> can't be null or empty.
+		/// </summary>
+		/// <param name="constraint">The constraint.</param>
+		/// <returns>An <see cref="Operator{T}"/> for chaining multiple constraints.</returns>
 		public static Operator<string> NullOrEmpty(this Constraint<string> constraint)
 		{
 			constraint.Throw = false;
@@ -22,6 +31,11 @@ namespace Borderline.DbC
 				Null(constraint), Empty(constraint));
 		}
 
+		/// <summary>
+		/// Evaluates if a <see cref="string"/> is empty. If negated the <see cref="string"/> can't be empty.
+		/// </summary>
+		/// <param name="constraint">The constraint.</param>
+		/// <returns>An <see cref="Operator{T}"/> for chaining multiple constraints.</returns>
 		public static Operator<string> Empty(this Constraint<string> constraint)
 		{
 			Func<Member<string>, bool> predicate;
@@ -43,6 +57,11 @@ namespace Borderline.DbC
 			return constraint.Evaluate(predicate, exceptionFactory, constraint.Throw);
 		}
 
+		/// <summary>
+		/// Evaluates if a <see cref="string"/> is null. If negated the <see cref="string"/> can't be null.
+		/// </summary>
+		/// <param name="constraint">The constraint.</param>
+		/// <returns>An <see cref="Operator{T}"/> for chaining multiple constraints.</returns>
 		public static Operator<string> Null(this Constraint<string> constraint)
 		{
 			Func<Member<string>, bool> predicate;
@@ -54,7 +73,7 @@ namespace Borderline.DbC
 					member.Value == null;
 
 				exceptionFactory = member =>
-					new PreConditionException(member.Name);
+					constraint.Condition.CreateException(member.Name);
 			}
 			else
 			{
@@ -68,6 +87,13 @@ namespace Borderline.DbC
 			return constraint.Evaluate(predicate, exceptionFactory, constraint.Throw);
 		}
 
+		/// <summary>
+		/// Evaluates if a <see cref="string"/> is equal to a given value. 
+		/// If negated the <see cref="string"/> not equal to the given value.
+		/// </summary>
+		/// <param name="constraint">The constraint.</param>
+		/// <param name="value">The value.</param>
+		/// <returns>An <see cref="Operator{T}"/> for chaining multiple constraints.</returns>
 		public static Operator<string> EqualTo(this Constraint<string> constraint, string value)
 		{
 			Func<Member<string>, bool> predicate = member => member.Value == value;
@@ -79,7 +105,7 @@ namespace Borderline.DbC
 
 			return constraint.Evaluate(
 				predicate,
-				member => new PreConditionException(member.Name),
+				member => constraint.Condition.CreateException(member.Name),
 				constraint.Throw);
 		}
 

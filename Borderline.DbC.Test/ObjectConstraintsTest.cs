@@ -15,8 +15,20 @@ namespace Borderline.DbC.Test
 	public class ObjectConstraintsTest
 	{
 		[Test]
+		[ExpectedException(typeof(PostConditionException))]
+		public void When_an_object_expected_to_be_null_is_not_expect_postcondition_exception()
+		{
+			var obj = new
+			{
+				Property = new object()
+			};
+
+			Ensure.That(() => obj.Property).Is.Null();
+		}
+
+		[Test]
 		[ExpectedException(typeof(PreConditionException))]
-		public void When_1()
+		public void When_an_object_expected_to_be_null_is_not_expect_precondition_exception()
 		{
 			var obj = new
 			{

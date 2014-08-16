@@ -12,12 +12,20 @@ using System.Linq.Expressions;
 
 namespace Borderline.DbC
 {
-	public class Ensure
+	/// <summary>
+	/// Use <see cref="Ensure"/> for validation of Postconditions.
+	/// </summary>
+	public static class Ensure
 	{
-		// TODO: Skall kasta annar fel än Require
+		/// <summary>
+		/// Projects the property that should be used for Precondition checks.
+		/// </summary>
+		/// <typeparam name="T">The type of the property to check.</typeparam>
+		/// <param name="memberExpression">The member expression.</param>
+		/// <returns>A <see cref="Condition{T}"/> enabling chaining of multiple properties.</returns>
 		public static Condition<T> That<T>(Expression<Func<T>> memberExpression)
 		{
-			return new Condition<T>().And(memberExpression);
+			return new PostCondition<T>().And(memberExpression);
 		}
 	}
 }

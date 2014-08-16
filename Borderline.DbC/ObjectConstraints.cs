@@ -11,18 +11,21 @@ using System;
 
 namespace Borderline.DbC
 {
+	/// <summary>
+	/// Defines contract constraints for <see cref="object"/>s.
+	/// </summary>
 	public static class ObjectConstraints
 	{
+		/// <summary>
+		/// Evaluates if an object is null. If negated object can't be null.
+		/// </summary>
+		/// <param name="constraint">The constraint.</param>
+		/// <returns>An <see cref="Operator{T}"/> for chaining multiple constraints.</returns>
 		public static Operator<object> Null(this Constraint<object> constraint)
-		{
-			return Null(constraint, true);
-		}
-
-		private static Operator<object> Null(this Constraint<object> constraint, bool @throw)
 		{
 			Func<Member<object>, bool> predicate;
 			Func<Member<object>, Exception> exceptionFactory = member
-				=> new PreConditionException(member.Name);
+				=> constraint.Condition.CreateException(member.Name);
 
 			if (!constraint.Negate)
 			{
@@ -35,7 +38,8 @@ namespace Borderline.DbC
 					member.Value != null;
 			}
 
-			return constraint.Evaluate(predicate, exceptionFactory, @throw);
+			return constraint.Evaluate(
+				predicate, exceptionFactory, constraint.Throw);
 		}
 	}
 }
