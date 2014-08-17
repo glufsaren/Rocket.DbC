@@ -103,7 +103,7 @@ When using `Is` evaluates if a number is less than the specified value. When usi
 
 * **Between**
 
-When using `Is` evaluates if a number is between the specified bounds. When using `IsNot` the number has to be outside the bounds.
+When using `Is` evaluates if a number is between the specified bounds. When using `IsNot` the number has to be outside of the bounds.
 
 	Require.That(() => obj.Text).Is.Between(1, 2);
 	Require.That(() => obj.Text).IsNot.Between(1, 2);
