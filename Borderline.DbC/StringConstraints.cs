@@ -19,7 +19,7 @@ namespace Borderline.DbC
 	{
 		/// <summary>
 		/// Evaluates if a <see cref="string"/> is null or empty. 
-		/// If negated the  <see cref="string"/> can't be null or empty.
+		/// If negated the <see cref="string"/> can't be null or empty.
 		/// </summary>
 		/// <param name="constraint">The constraint.</param>
 		/// <returns>An <see cref="Operator{T}"/> for chaining multiple constraints.</returns>
