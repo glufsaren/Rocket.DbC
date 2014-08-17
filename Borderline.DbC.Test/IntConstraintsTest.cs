@@ -176,7 +176,6 @@ namespace Borderline.DbC.Test
 			Require.That(() => obj.Property).IsNot.Gt(2);
 		}
 
-
 		[Test]
 		[ExpectedException(typeof(PreConditionException))]
 		public void When_le_a()
@@ -272,7 +271,6 @@ namespace Borderline.DbC.Test
 
 			Require.That(() => obj.Property).IsNot.Lt(2);
 		}
-
 
 		[TestCase(1)]
 		[TestCase(2)]

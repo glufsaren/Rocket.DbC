@@ -1,29 +1,37 @@
-# README #
+# Borderline.DbC #
 
-This README would normally document whatever steps are necessary to get your application up and running.
+Borderline.DbC is a simple to use library for validating pre- and postconditions.
 
-### What is this repository for? ###
+### Getting started ###
 
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+Short introduction how to use the library.
 
-### How do I get set up? ###
+There is two main objects to use:
 
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
+* Require - Used for precondition checks
+* Ensure - Used for postcondition checks
 
-### Contribution guidelines ###
+Use Ensure or Reqiured to project one or more properties of a given type.
 
-* Writing tests
-* Code review
-* Other guidelines
+`Require.That(() => obj.Property)`
 
-### Who do I talk to? ###
+or chain properties
 
-* Repo owner or admin
-* Other community or team contact
+`Require.That(() => Property1).And(() => Property2)`
+
+#### Constraints ####
+
+##### Object #####
+
+* Null
+
+
+##### String #####
+##### int #####
+##### Collections #####
+
+
+### About the author ###
+
+> Working with brilliant people has made me a decent developer. I like to produce clean and aesthetically appealing code.
+> - [John Tjust](https://bitbucket.org/glufsaren)
