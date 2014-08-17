@@ -21,7 +21,7 @@ or chain properties
 
 #### Constraints ####
 
-Constraints perform the condition checks and are prefixed with `Is` or `IsNot`. You can chain as many constraints as you like for the spec
+Constraints perform the condition checks and are prefixed with `Is` or `IsNot`. You can chain as many constraints as you like for the specified properties.
 
 ##### Object #####
 
