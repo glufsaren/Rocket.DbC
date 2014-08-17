@@ -96,7 +96,7 @@ When using `Is` evaluates if a number less than or equal to the specified value.
 
 * **Lt**
 
-When using `Is` evaluates if a number is less than the specified value. When using `IsNot` the number has to be greater than or equal the specified value.
+When using `Is` evaluates if a number is less than the specified value. When using `IsNot` the number has to be greater than or equal to the specified value.
 
 	Require.That(() => obj.Text).Is.Lt(1);
 	Require.That(() => obj.Text).IsNot.Lt(1);
