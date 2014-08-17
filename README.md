@@ -6,7 +6,7 @@ Borderline.DbC is a simple to use library for validating pre- and postconditions
 
 Short introduction how to use the library.
 
-There is two main objects to use:
+There are two main objects to use:
 
 * **Require** - Used for precondition checks
 * **Ensure** - Used for postcondition checks
