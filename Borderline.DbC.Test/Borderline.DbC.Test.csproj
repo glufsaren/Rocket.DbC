@@ -43,7 +43,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CollectionConstraintsTest.cs" />
-    <Compile Include="IntConstraintsTest.cs" />
+    <Compile Include="DecimalConstraintsTest.cs" />
+    <Compile Include="DoubleConstraintsTest.cs" />
+    <Compile Include="DateTimeConstraintsTest.cs" />
+    <Compile Include="Int64ConstraintsTest.cs" />
+    <Compile Include="Int16ConstraintsTest.cs" />
+    <Compile Include="Int32ConstraintsTest.cs" />
     <Compile Include="ObjectConstraintsTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StringConstraintsTest.cs" />

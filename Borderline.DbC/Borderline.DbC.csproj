@@ -45,7 +45,13 @@
     <Compile Include="Condition.cs" />
     <Compile Include="Constraint.cs" />
     <Compile Include="Ensure.cs" />
-    <Compile Include="IntConstraints.cs" />
+    <Compile Include="Int16Constraints.cs" />
+    <Compile Include="DoubleConstraints.cs" />
+    <Compile Include="DecimalConstraints.cs" />
+    <Compile Include="DateTimeConstraints.cs" />
+    <Compile Include="Int64Constraints.cs" />
+    <Compile Include="StructConstraints.cs" />
+    <Compile Include="Int32Constraints.cs" />
     <Compile Include="Member.cs" />
     <Compile Include="ObjectConstraints.cs" />
     <Compile Include="Operator.cs" />

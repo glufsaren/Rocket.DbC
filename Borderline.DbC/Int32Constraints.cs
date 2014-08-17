@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="IntConstraints.cs" company="Borderline Studios">
+// <copyright file="Int32Constraints.cs" company="Borderline Studios">
 //   Copyright © Borderline Studios. All rights reserved.
 // </copyright>
 // <summary>
@@ -7,14 +7,12 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using System;
-
 namespace Borderline.DbC
 {
 	/// <summary>
 	/// Defines contract constraints for <see cref="int"/>.
 	/// </summary>
-	public static class IntConstraints
+	public static class Int32Constraints
 	{
 		/// <summary>
 		/// Evaluates if the specified <see cref="value"/> is equal to the property value. If negated not equal to.
@@ -24,22 +22,7 @@ namespace Borderline.DbC
 		/// <returns>An <see cref="Operator{T}"/> for chaining multiple constraints.</returns>
 		public static Operator<int> EqualTo(this Constraint<int> constraint, int value)
 		{
-			Func<Member<int>, bool> predicate;
-			Func<Member<int>, Exception> exceptionFactory = member
-				=> constraint.Condition.CreateException(member.Name);
-
-			if (!constraint.Negate)
-			{
-				predicate = member =>
-					member.Value == value;
-			}
-			else
-			{
-				predicate = member =>
-					member.Value != value;
-			}
-
-			return constraint.Evaluate(predicate, exceptionFactory, constraint.Throw);
+			return StructConstraints.EqualTo(constraint, value);
 		}
 
 		/// <summary>
@@ -50,22 +33,7 @@ namespace Borderline.DbC
 		/// <returns>An <see cref="Operator{T}"/> for chaining multiple constraints.</returns>
 		public static Operator<int> Ge(this Constraint<int> constraint, int value)
 		{
-			Func<Member<int>, bool> predicate;
-			Func<Member<int>, Exception> exceptionFactory = member
-				=> constraint.Condition.CreateException(member.Name);
-
-			if (!constraint.Negate)
-			{
-				predicate = member =>
-					member.Value >= value;
-			}
-			else
-			{
-				predicate = member =>
-					member.Value < value;
-			}
-
-			return constraint.Evaluate(predicate, exceptionFactory, constraint.Throw);
+			return StructConstraints.Ge(constraint, value);
 		}
 
 		/// <summary>
@@ -76,23 +44,7 @@ namespace Borderline.DbC
 		/// <returns>An <see cref="Operator{T}"/> for chaining multiple constraints.</returns>
 		public static Operator<int> Gt(this Constraint<int> constraint, int value)
 		{
-			Func<Member<int>, bool> predicate;
-			Func<Member<int>, Exception> exceptionFactory = member
-				=> constraint.Condition.CreateException(member.Name);
-
-			if (!constraint.Negate)
-			{
-				predicate = member =>
-					member.Value > value;
-			}
-			else
-			{
-				predicate = member =>
-					member.Value <= value;
-			}
-
-			return constraint.Evaluate(
-				predicate, exceptionFactory, constraint.Throw);
+			return StructConstraints.Gt(constraint, value);
 		}
 
 		/// <summary>
@@ -103,23 +55,7 @@ namespace Borderline.DbC
 		/// <returns>An <see cref="Operator{T}"/> for chaining multiple constraints.</returns>
 		public static Operator<int> Le(this Constraint<int> constraint, int value)
 		{
-			Func<Member<int>, bool> predicate;
-			Func<Member<int>, Exception> exceptionFactory = member
-				=> constraint.Condition.CreateException(member.Name);
-
-			if (!constraint.Negate)
-			{
-				predicate = member =>
-					member.Value <= value;
-			}
-			else
-			{
-				predicate = member =>
-					member.Value > value;
-			}
-
-			return constraint.Evaluate(
-				predicate, exceptionFactory, constraint.Throw);
+			return StructConstraints.Le(constraint, value);
 		}
 
 		/// <summary>
@@ -131,23 +67,7 @@ namespace Borderline.DbC
 		/// <exception cref="PreConditionException">When the member value is less than the allowed value.</exception>
 		public static Operator<int> Lt(this Constraint<int> constraint, int value)
 		{
-			Func<Member<int>, bool> predicate;
-			Func<Member<int>, Exception> exceptionFactory = member
-				=> constraint.Condition.CreateException(member.Name);
-
-			if (!constraint.Negate)
-			{
-				predicate = member =>
-					member.Value < value;
-			}
-			else
-			{
-				predicate = member =>
-					member.Value >= value;
-			}
-
-			return constraint.Evaluate(
-				predicate, exceptionFactory, constraint.Throw);
+			return StructConstraints.Lt(constraint, value);
 		}
 
 		/// <summary>
@@ -159,23 +79,7 @@ namespace Borderline.DbC
 		/// <returns>An <see cref="Operator{T}"/> for chaining multiple constraints.</returns>
 		public static Operator<int> Between(this Constraint<int> constraint, int low, int high)
 		{
-			Func<Member<int>, bool> predicate;
-			Func<Member<int>, Exception> exceptionFactory = member
-				=> constraint.Condition.CreateException(member.Name);
-
-			if (!constraint.Negate)
-			{
-				predicate = member =>
-					member.Value >= low && member.Value <= high;
-			}
-			else
-			{
-				predicate = member =>
-					member.Value < low || member.Value > high;
-			}
-
-			return constraint.Evaluate(
-				predicate, exceptionFactory, constraint.Throw);
+			return StructConstraints.Between(constraint, low, high);
 		}
 	}
 }

@@ -19,3 +19,4 @@ QuickSwap.Web.UI.Test/Source/Scripts*/
 *.ncrunchproject
 *.ncrunchsolution
 *_NCrunch_*
+/Borderline.DbC/*.nupkg
