@@ -9,6 +9,8 @@
 
 using System;
 
+using Crom.DbC;
+
 using NUnit.Framework;
 
 namespace Borderline.DbC.Test
@@ -18,7 +20,7 @@ namespace Borderline.DbC.Test
 	{
 		[TestCase("")]
 		[TestCase(" ")]
-		public void When_text_is_empty_and_empty_is_required_expect_no_exception(string text)
+		public void When_empty_expected_and_fulfilled_expect_no_exception(string text)
 		{
 			var obj = new
 			{
@@ -31,7 +33,7 @@ namespace Borderline.DbC.Test
 		[TestCase("")]
 		[TestCase(" ")]
 		[ExpectedException(typeof(ArgumentException))]
-		public void When_text_is_empty_and_not_empty_is_required_expect_exception(string text)
+		public void When_empty_not_expected_and_not_fulfilled_expect_exception(string text)
 		{
 			var obj = new
 			{
@@ -42,7 +44,7 @@ namespace Borderline.DbC.Test
 		}
 
 		[Test]
-		public void When_text_is_not_empty_and_not_empty_is_required_expect_no_exception()
+		public void When_empty_not_expected_and_fulfilled_expect_no_exception()
 		{
 			var obj = new
 			{
@@ -53,7 +55,7 @@ namespace Borderline.DbC.Test
 		}
 
 		[Test]
-		public void When_1()
+		public void When_null_expected_and_fulfilled_expect_no_exception()
 		{
 			var obj = new
 			{
@@ -65,7 +67,7 @@ namespace Borderline.DbC.Test
 
 		[Test]
 		[ExpectedException(typeof(PreConditionException))]
-		public void When_2()
+		public void When_null_expected_and_not_fulfilled_expect_exception()
 		{
 			var obj = new
 			{
@@ -76,7 +78,7 @@ namespace Borderline.DbC.Test
 		}
 
 		[Test]
-		public void When_3()
+		public void When_null_not_expected_and_fulfilled_expect_no_exception()
 		{
 			var obj = new
 			{
@@ -88,7 +90,7 @@ namespace Borderline.DbC.Test
 
 		[Test]
 		[ExpectedException(typeof(ArgumentNullException))]
-		public void When_4()
+		public void When_null_not_expected_and_not_fulfilled_expect_exception()
 		{
 			var obj = new
 			{
@@ -100,7 +102,7 @@ namespace Borderline.DbC.Test
 
 		[Test]
 		[ExpectedException(typeof(ArgumentNullException))]
-		public void When_5()
+		public void When_null_or_empty_not_expected_and_null_expect_exception()
 		{
 			var obj = new
 			{
@@ -113,7 +115,7 @@ namespace Borderline.DbC.Test
 		[TestCase("")]
 		[TestCase("  ")]
 		[ExpectedException(typeof(ArgumentException))]
-		public void When_6(string text)
+		public void When_null_or_empty_not_expected_and_empty_expect_exception(string text)
 		{
 			var obj = new
 			{
@@ -126,7 +128,7 @@ namespace Borderline.DbC.Test
 		[TestCase(null)]
 		[TestCase("")]
 		[TestCase("  ")]
-		public void When_7(string text)
+		public void When_null_or_empty_expected_and_fulfilled_expect_no_exception(string text)
 		{
 			var obj = new
 			{
@@ -138,7 +140,7 @@ namespace Borderline.DbC.Test
 
 		[Test]
 		[ExpectedException(typeof(PreConditionException))]
-		public void When_8()
+		public void When_null_or_empty_expected_and_not_fulfilled_expect_exception()
 		{
 			var obj = new
 			{
@@ -149,7 +151,7 @@ namespace Borderline.DbC.Test
 		}
 
 		[Test]
-		public void When_9()
+		public void When_equal_expected_and_fulfilled_expect_no_exception()
 		{
 			var obj = new
 			{
@@ -161,7 +163,7 @@ namespace Borderline.DbC.Test
 
 		[Test]
 		[ExpectedException(typeof(PreConditionException))]
-		public void When_10()
+		public void When_equal_expected_and_not_fulfilled_expect_exception()
 		{
 			var obj = new
 			{
@@ -173,7 +175,7 @@ namespace Borderline.DbC.Test
 
 		[Test]
 		[ExpectedException(typeof(PreConditionException))]
-		public void When_11()
+		public void When_equal_not_expected_and_not_fulfilled_expect_exception()
 		{
 			var obj = new
 			{
@@ -184,7 +186,7 @@ namespace Borderline.DbC.Test
 		}
 
 		[Test]
-		public void When_12()
+		public void When_equal_not_expected_and_fulfilled_expect_no_exception()
 		{
 			var obj = new
 			{
@@ -195,120 +197,62 @@ namespace Borderline.DbC.Test
 		}
 
 		[Test]
-		public void When_And()
+		public void When_chaining_string_constraints_with_and_expect_no_exception()
 		{
-			var obj = new
-						  {
-							  Text = "Hello World!"
-						  };
+			var obj = new { Text = "Hello World!" };
 
 			Require.That(() => obj.Text).IsNot.Null().And.IsNot.Empty();
 		}
 
 		[Test]
-		public void When_Or()
+		public void When_property_have_to_be_not_null_or_not_empty_and_is_not_empty_expect_no_exception()
 		{
-			var obj = new
-			{
-				Text = "APA"
-			};
-
-			////Require.That(() => obj.Text).IsNot.Null().Or(c => c.IsNot.Empty());
+			var obj = new { Text = "Hello World!" };
 
 			Require.That(() => obj.Text).Or(c => c.IsNot.Null(), c => c.IsNot.Empty());
 		}
 
 		[Test]
-		public void When_Or_1()
+		public void When_property_have_to_be_not_null_or_not_empty_and_is_null_expect_no_exception()
 		{
 			var obj = new
 			{
 				Text = (string)null
 			};
 
-			////Require.That(() => obj.Text).IsNot.Null().Or(c => c.IsNot.Empty());
 			Require.That(() => obj.Text).Or(c => c.IsNot.Null(), c => c.IsNot.Empty());
 		}
 
 		[TestCase("")]
 		[TestCase("  ")]
-		public void When_Or_2(string text)
+		public void When_property_have_to_be_not_null_or_not_empty_and_is_empty_expect_no_exception(string text)
+		{
+			var obj = new { Text = text };
+
+			Require.That(() => obj.Text).Or(c => c.IsNot.Null(), c => c.IsNot.Empty());
+		}
+
+		[TestCase("")]
+		[TestCase("  ")]
+		public void When_property_have_to_be_null_or_not_empty_and_is_empty_expect_no_exception(string text)
 		{
 			var obj = new
 			{
 				Text = text
 			};
 
-			////Require.That(() => obj.Text).IsNot.Null().Or(c => c.IsNot.Empty());
-			Require.That(() => obj.Text).Or(c => c.IsNot.Null(), c => c.IsNot.Empty());
-		}
-
-		[TestCase("")]
-		[TestCase("  ")]
-		public void When_Or_3(string text)
-		{
-			var obj = new
-			{
-				Text = text
-			};
-
-			////Require.That(() => obj.Text).Is.Null().Or(c => c.Is.Empty());
 			Require.That(() => obj.Text).Or(c => c.Is.Null(), c => c.Is.Empty());
 		}
 
 		[Test]
-		public void When_Or_4()
+		public void When_property_have_to_be_null_or_not_empty_and_is_null_expect_no_exception()
 		{
 			var obj = new
 			{
 				Text = (string)null
 			};
 
-			//Require.That(() => obj.Text).Is.Null().Or(c => c.Is.Empty());
 			Require.That(() => obj.Text).Or(c => c.Is.Null(), c => c.Is.Empty());
 		}
-
-		//[TestCase("")]
-		//[TestCase(" ")]
-		//[ExpectedException(typeof(ArgumentException))]
-		//public void When_text_is_empty_expect_exception(string value)
-		//{
-		//	var obj = new
-		//	{
-		//		Text = value
-		//	};
-
-		//	Require.That(() => obj.Text).IsNotNull().And.IsNotEmpty();
-		//}
-
-		////[TestCase("Not")]
-		////[ExpectedException(typeof(PreConditionException))]
-		////public void When_text_is_not_equal_to_expected_expect_exception(string value)
-		////{
-		////    var obj = new
-		////    {
-		////        Text = value
-		////    };
-
-		////    Require.That(() => obj.Text).IsEqualTo("Hello").Or.IsEqualTo("World");
-		////}
-
-		////[TestCase("Not")]
-		////[TestCase("Not not")]
-		////[TestCase("not not not")]
-		////[TestCase("not not not not")]
-		////public void When_text_is_equal_to_expected_expect_no_exception(string value)
-		////{
-		////    var obj = new
-		////    {
-		////        Text = value
-		////    };
-
-		////    Require.That(() => obj.Text)
-		////        .IsEqualTo("Not").Or
-		////        .IsEqualTo("Not not").Or
-		////        .IsEqualTo("not not not").Or
-		////        .IsEqualTo("not not not not");
-		////}
 	}
 }

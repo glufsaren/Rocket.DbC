@@ -9,7 +9,7 @@
 
 using System;
 
-namespace Borderline.DbC
+namespace Crom.DbC
 {
 	/// <summary>
 	/// Defines contract constraints for <see cref="DateTime"/>.

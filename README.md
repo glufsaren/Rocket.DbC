@@ -1,6 +1,6 @@
-# Borderline.DbC #
+# Crom.DbC #
 
-Borderline.DbC is a simple to use library for validating pre- and postconditions.
+Crom.DbC is a simple to use library for validating pre- and postconditions.
 
 ### Getting started ###
 

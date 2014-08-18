@@ -11,7 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Borderline.DbC
+namespace Crom.DbC
 {
 	/// <summary>
 	/// Defines the constraints for collections.

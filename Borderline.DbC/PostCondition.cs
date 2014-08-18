@@ -9,7 +9,7 @@
 
 using System;
 
-namespace Borderline.DbC
+namespace Crom.DbC
 {
 	internal class PostCondition<T> : Condition<T>
 	{

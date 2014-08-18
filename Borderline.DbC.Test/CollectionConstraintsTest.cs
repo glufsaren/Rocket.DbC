@@ -10,6 +10,8 @@
 using System.Collections.Generic;
 using System.Linq;
 
+using Crom.DbC;
+
 using NUnit.Framework;
 
 namespace Borderline.DbC.Test
@@ -18,7 +20,7 @@ namespace Borderline.DbC.Test
 	public class CollectionConstraintsTest
 	{
 		[Test]
-		public void When_1()
+		public void When_empty_expected_and_null_expect_no_exception()
 		{
 			var obj = new
 			{
@@ -29,7 +31,7 @@ namespace Borderline.DbC.Test
 		}
 
 		[Test]
-		public void When_2()
+		public void When_empty_expected_and_empty_expect_no_exception()
 		{
 			var obj = new
 			{
@@ -41,7 +43,7 @@ namespace Borderline.DbC.Test
 
 		[Test]
 		[ExpectedException(typeof(PreConditionException))]
-		public void When_3()
+		public void When_empty_expected_and_not_fulfilled_expect_exception()
 		{
 			var obj = new Test
 			{
@@ -53,7 +55,7 @@ namespace Borderline.DbC.Test
 
 		[Test]
 		[ExpectedException(typeof(PreConditionException))]
-		public void When_4()
+		public void When_not_null_expected_and_not_fulfilled_expect_exception()
 		{
 			var obj = new
 			{
@@ -64,7 +66,7 @@ namespace Borderline.DbC.Test
 		}
 
 		[Test]
-		public void When_5()
+		public void When_not_null_expected_and_empty_expect_no_exception()
 		{
 			var obj = new
 			{
@@ -75,7 +77,7 @@ namespace Borderline.DbC.Test
 		}
 
 		[Test]
-		public void When_6()
+		public void When_not_null_expected_and_not_empty_expect_no_exception()
 		{
 			var obj = new Test
 			{
@@ -86,7 +88,7 @@ namespace Borderline.DbC.Test
 		}
 
 		[Test]
-		public void When_7()
+		public void When_null_or_empty_expected_and_null_expect_no_exception()
 		{
 			var obj = new
 			{
@@ -97,7 +99,7 @@ namespace Borderline.DbC.Test
 		}
 
 		[Test]
-		public void When_8()
+		public void When_null_or_empty_expected_and_empty_expect_no_exception()
 		{
 			var obj = new
 			{
@@ -109,7 +111,7 @@ namespace Borderline.DbC.Test
 
 		[Test]
 		[ExpectedException(typeof(PreConditionException))]
-		public void When_9()
+		public void When_null_or_empty_expected_and_not_empty_expect_exception()
 		{
 			var obj = new Test
 			{
@@ -121,7 +123,7 @@ namespace Borderline.DbC.Test
 
 		[Test]
 		[ExpectedException(typeof(PreConditionException))]
-		public void When_10()
+		public void When_null_or_empty_not_expected_and_null_expect_exception()
 		{
 			var obj = new
 			{
@@ -133,7 +135,7 @@ namespace Borderline.DbC.Test
 
 		[Test]
 		[ExpectedException(typeof(PreConditionException))]
-		public void When_11()
+		public void When_null_or_empty_not_expected_and_empty_expect_exception()
 		{
 			var obj = new
 			{
@@ -144,7 +146,7 @@ namespace Borderline.DbC.Test
 		}
 
 		[Test]
-		public void When_12()
+		public void When_null_or_empty_not_expected_and_not_empty_expect_no_exception()
 		{
 			var obj = new Test
 			{

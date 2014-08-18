@@ -13,11 +13,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Borderline.DbC")]
+[assembly: AssemblyTitle("Crom.DbC")]
 [assembly: AssemblyDescription("Simple Design by contract library.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Borderline Studios")]
-[assembly: AssemblyProduct("Borderline.DbC")]
+[assembly: AssemblyProduct("Crom.DbC")]
 [assembly: AssemblyCopyright("Copyright ©  2014")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

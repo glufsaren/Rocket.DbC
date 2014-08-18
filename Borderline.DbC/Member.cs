@@ -7,7 +7,7 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace Borderline.DbC
+namespace Crom.DbC
 {
 	internal class Member<T>
 	{

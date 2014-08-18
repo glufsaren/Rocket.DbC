@@ -9,7 +9,7 @@
 
 using System;
 
-namespace Borderline.DbC
+namespace Crom.DbC
 {
 	internal static class StructConstraints
 	{

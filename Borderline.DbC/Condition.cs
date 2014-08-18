@@ -12,7 +12,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 
-namespace Borderline.DbC
+namespace Crom.DbC
 {
 	/// <summary>
 	/// Base class for the different condition types.

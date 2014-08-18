@@ -9,6 +9,8 @@
 
 using System;
 
+using Crom.DbC;
+
 using NUnit.Framework;
 
 namespace Borderline.DbC.Test

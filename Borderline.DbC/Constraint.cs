@@ -10,7 +10,7 @@
 using System;
 using System.Linq;
 
-namespace Borderline.DbC
+namespace Crom.DbC
 {
 	/// <summary>
 	/// Encapsulates information used for evaluating constraints.

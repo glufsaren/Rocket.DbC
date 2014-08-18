@@ -10,7 +10,7 @@
 using System;
 using System.Linq.Expressions;
 
-namespace Borderline.DbC
+namespace Crom.DbC
 {
 	/// <summary>
 	/// Use <see cref="Ensure"/> for validation of Postconditions.

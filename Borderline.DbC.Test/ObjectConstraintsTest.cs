@@ -7,6 +7,8 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
+using Crom.DbC;
+
 using NUnit.Framework;
 
 namespace Borderline.DbC.Test
@@ -16,7 +18,7 @@ namespace Borderline.DbC.Test
 	{
 		[Test]
 		[ExpectedException(typeof(PostConditionException))]
-		public void When_an_object_expected_to_be_null_is_not_expect_postcondition_exception()
+		public void When_null_expected_and_not_fulfilled_expect_exception()
 		{
 			var obj = new
 			{
@@ -27,19 +29,7 @@ namespace Borderline.DbC.Test
 		}
 
 		[Test]
-		[ExpectedException(typeof(PreConditionException))]
-		public void When_an_object_expected_to_be_null_is_not_expect_precondition_exception()
-		{
-			var obj = new
-			{
-				Property = new object()
-			};
-
-			Require.That(() => obj.Property).Is.Null();
-		}
-
-		[Test]
-		public void When_2()
+		public void When_null_expected_and_fulfilled_expect_no_exception()
 		{
 			var obj = new
 			{
@@ -50,7 +40,7 @@ namespace Borderline.DbC.Test
 		}
 
 		[Test]
-		public void When_3()
+		public void When_null_not_expected_and_fulfilled_expect_no_exception()
 		{
 			var obj = new
 			{
@@ -62,7 +52,7 @@ namespace Borderline.DbC.Test
 
 		[Test]
 		[ExpectedException(typeof(PreConditionException))]
-		public void When_4()
+		public void When_null_not_expected_and_not_fulfilled_expect_exception()
 		{
 			var obj = new
 			{

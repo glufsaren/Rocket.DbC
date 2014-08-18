@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+    <metadata>
+        <id>Crom.DbC</id>
+        <version>1.0.0.0</version>
+        <title>Crom.DbC</title>
+        <authors>John Tjust</authors>
+        <owners>John Tjust</owners>
+        <licenseUrl>http://apache.org/licenses/LICENSE-2.0</licenseUrl>
+        <projectUrl>https://bitbucket.org/glufsaren/crom.dbc/overview</projectUrl>
+        <iconUrl>https://bytebucket.org/glufsaren/crom.dbc/raw/2ef7943293f3b7b3454a56f2f8df332e28d5ce26/Logo.png</iconUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>Simple Design by contract library supporting PreConditions and PostConditions</description>
+        <releaseNotes>Summary of changes made in this release of the package.</releaseNotes>
+        <copyright>Copyright 2014</copyright>
+        <tags>DbC, Design by contract, PreCondition, PostCondition, Code Contracts, contract programming, programming design-by-contract</tags>
+    </metadata>
+    <files>
+        <file src="bin\Release\Crom.DbC.dll" target="lib\Crom.DbC.dll" />
+        <file src="bin\Release\Crom.DbC.pdb" target="lib\Crom.DbC.pdb" />
+        <file src="bin\Release\Crom.DbC.xml" target="lib\Crom.DbC.xml" />
+    </files>
+</package>

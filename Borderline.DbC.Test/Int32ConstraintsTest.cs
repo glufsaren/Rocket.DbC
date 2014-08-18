@@ -7,6 +7,8 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
+using Crom.DbC;
+
 using NUnit.Framework;
 
 namespace Borderline.DbC.Test
