@@ -10,11 +10,9 @@
 using System.Collections.Generic;
 using System.Linq;
 
-using Crom.DbC;
-
 using NUnit.Framework;
 
-namespace Borderline.DbC.Test
+namespace Crom.DbC.Test
 {
 	[TestFixture]
 	public class CollectionConstraintsTest

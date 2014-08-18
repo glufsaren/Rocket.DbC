@@ -9,11 +9,9 @@
 
 using System;
 
-using Crom.DbC;
-
 using NUnit.Framework;
 
-namespace Borderline.DbC.Test
+namespace Crom.DbC.Test
 {
 	[TestFixture]
 	public class DateTimeConstraintsTest

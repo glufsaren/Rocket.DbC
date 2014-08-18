@@ -10,7 +10,6 @@ obj/
 /QuickSwap.Web.UI/Data
 */_ReSharper*
 packages
-*.DotSettings
 *.swp
 QuickSwap.Test.Web/Source/Scripts/
 QuickSwap.Web.UI.Test/Source/Scripts*/

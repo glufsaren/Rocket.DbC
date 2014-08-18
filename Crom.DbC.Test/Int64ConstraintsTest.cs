@@ -1,17 +1,15 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="DoubleConstraintsTest.cs" company="Borderline Studios">
+// <copyright file="Int64ConstraintsTest.cs" company="Borderline Studios">
 //   Copyright © Borderline Studios. All rights reserved.
 // </copyright>
 // <summary>
-//   Defines the DoubleConstraintsTest type.
+//   Defines the Int64ConstraintsTest type.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using Crom.DbC;
-
 using NUnit.Framework;
 
-namespace Borderline.DbC.Test
+namespace Crom.DbC.Test
 {
 	[TestFixture]
 	public class Int64ConstraintsTest

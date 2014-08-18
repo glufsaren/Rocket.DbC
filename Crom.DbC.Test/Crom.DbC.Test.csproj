@@ -57,7 +57,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Borderline.DbC\Crom.DbC.csproj">
+    <ProjectReference Include="..\Crom.DbC\Crom.DbC.csproj">
       <Project>{a2f5b16a-8b03-4105-9303-f69bd8d236a4}</Project>
       <Name>Crom.DbC</Name>
     </ProjectReference>
