@@ -1,6 +1,6 @@
-# Crom.DbC #
+# Rocket.DbC #
 
-Crom.DbC is a simple to use library for validating pre- and postconditions.
+Rocket.DbC is a simple to use library for validating pre- and postconditions.
 
 ### Getting started ###
 
