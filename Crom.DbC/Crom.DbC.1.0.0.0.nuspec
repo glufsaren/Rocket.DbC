@@ -8,7 +8,7 @@
         <owners>John Tjust</owners>
         <licenseUrl>http://apache.org/licenses/LICENSE-2.0</licenseUrl>
         <projectUrl>https://bitbucket.org/glufsaren/crom.dbc/overview</projectUrl>
-        <iconUrl>https://bytebucket.org/glufsaren/crom.dbc/raw/2ef7943293f3b7b3454a56f2f8df332e28d5ce26/Logo.png</iconUrl>
+        <iconUrl>https://bitbucket.org/glufsaren/crom.dbc/src/a17fb8b612e02a605a1842753464b9e017151338/Logo.png?at=master</iconUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <description>Simple Design by contract library supporting PreConditions and PostConditions</description>
         <releaseNotes>Summary of changes made in this release of the package.</releaseNotes>
