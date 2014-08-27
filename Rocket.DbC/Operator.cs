@@ -8,6 +8,8 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 using System;
+using System.Linq;
+using System.Security.Policy;
 
 namespace Rocket.DbC
 {
@@ -38,6 +40,8 @@ namespace Rocket.DbC
 		{
 			get
 			{
+				condition.Throw = true;
+
 				return condition;
 			}
 		}
@@ -45,5 +49,33 @@ namespace Rocket.DbC
 		internal bool Result { get; set; }
 
 		internal Exception Exception { get; set; }
+
+
+
+		/// <summary>
+		/// Perform an or evaluation for the specified constraints.
+		/// </summary>
+		/// <param name="func">The constraints.</param>
+		/// <exception cref="System.ArgumentException">When no Constraints specified.</exception>
+		public Operator<T> Or(params Func<Condition<T>, Operator<T>>[] func)
+		{
+			if (func == null || !func.Any())
+			{
+				throw new ArgumentException(
+					"No Constraints specified.");
+			}
+
+			condition.Throw = false;
+
+			var constraint = new Constraint<T>(condition)
+								 {
+									 Throw = false
+								 };
+
+			constraint.Or(
+				func.Select(f => f(condition)).ToArray());
+
+			return this;
+		}
 	}
 }

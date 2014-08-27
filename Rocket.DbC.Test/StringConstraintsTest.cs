@@ -9,6 +9,8 @@
 
 using System;
 
+using NUnit.Framework;
+
 namespace Rocket.DbC.Test
 {
 	[TestFixture]
@@ -249,6 +251,22 @@ namespace Rocket.DbC.Test
 			};
 
 			Require.That(() => obj.Text).Or(c => c.Is.Null(), c => c.Is.Empty());
+		}
+
+		[Test]
+		public void When_mixing_or_and_and()
+		{
+			var obj = new
+			{
+				Text = "Hello World!"
+			};
+
+			Require.That(() => obj.Text).Is.EqualTo("Hello World!").Or(c => c.Is.Null(), c => c.IsNot.Null()).And.IsNot.EqualTo("Hej");
+
+			Ensure.That(() => obj.Text).Is.EqualTo("Hello World!").And.IsNot.Null();
+
+			Ensure.That(() => obj.Text).Is.EqualTo("Hello World!").Or(c => c.IsNot.Null(), c => c.IsNot.Empty()).And.IsNot.Null();
+			Ensure.That(() => obj.Text).Is.EqualTo("Hello World!").Or(c => c.IsNot.Null(), c => c.IsNot.Empty()).And.IsNot.Null();
 		}
 	}
 }

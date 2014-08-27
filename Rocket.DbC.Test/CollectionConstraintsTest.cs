@@ -10,6 +10,8 @@
 using System.Collections.Generic;
 using System.Linq;
 
+using NUnit.Framework;
+
 namespace Rocket.DbC.Test
 {
 	[TestFixture]

@@ -22,7 +22,13 @@ namespace Rocket.DbC
 	{
 		private readonly List<Member<T>> members = new List<Member<T>>();
 
-		private bool @throw = true;
+		/// <summary>
+		/// Initializes a new instance of the <see cref="Condition{T}"/> class.
+		/// </summary>
+		protected Condition()
+		{
+			Throw = true;
+		}
 
 		/// <summary>
 		/// Gets a <see cref="Constraint{T}"/> for evaluation.
@@ -34,7 +40,7 @@ namespace Rocket.DbC
 		{
 			get
 			{
-				return new Constraint<T>(this) { Throw = @throw };
+				return new Constraint<T>(this) { Throw = Throw };
 			}
 		}
 
@@ -48,7 +54,7 @@ namespace Rocket.DbC
 		{
 			get
 			{
-				return new Constraint<T>(this, true) { Throw = @throw };
+				return new Constraint<T>(this, true) { Throw = Throw };
 			}
 		}
 
@@ -60,24 +66,20 @@ namespace Rocket.DbC
 			}
 		}
 
+		internal bool Throw { private get; set; }
+
 		/// <summary>
 		/// Perform an or evaluation for the specified constraints.
 		/// </summary>
 		/// <param name="func">The constraints.</param>
 		/// <exception cref="System.ArgumentException">When no Constraints specified.</exception>
-		public void Or(params Func<Condition<T>, Operator<T>>[] func)
+		public Operator<T> Or(params Func<Condition<T>, Operator<T>>[] func)
 		{
-			if (func == null || !func.Any())
-			{
-				throw new ArgumentException("No Constraints specified.");
-			}
+			var @operator = new Operator<T>(this);
 
-			@throw = false;
+			@operator.Or(func);
 
-			var constraint = new Constraint<T>(this) { Throw = false };
-
-			constraint.Or(
-				func.Select(f => f(this)).ToArray());
+			return @operator;
 		}
 
 		/// <summary>

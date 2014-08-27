@@ -9,6 +9,8 @@
 
 using System;
 
+using NUnit.Framework;
+
 namespace Rocket.DbC.Test
 {
 	[TestFixture]

@@ -1,14 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
     <metadata>
-        <id>Crom.DbC</id>
+        <id>Rocket.DbC</id>
         <version>1.0.0.0</version>
-        <title>Crom.DbC</title>
+        <title>Rocket.DbC</title>
         <authors>John Tjust</authors>
         <owners>John Tjust</owners>
         <licenseUrl>http://apache.org/licenses/LICENSE-2.0</licenseUrl>
-        <projectUrl>https://bitbucket.org/glufsaren/crom.dbc/overview</projectUrl>
-        <iconUrl>https://bitbucket.org/glufsaren/crom.dbc/src/a17fb8b612e02a605a1842753464b9e017151338/Logo.png?at=master</iconUrl>
+        <projectUrl>https://bitbucket.org/glufsaren/rocket.dbc/overview</projectUrl>
+        <iconUrl>https://bytebucket.org/glufsaren/rocket.dbc/raw/e8e635a06a3d0cb5313936ad89df08fd3a0444fb/Logo.png?token=d0aa5744cc693c932fcb0f31d9c91a6daab179f4</iconUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <description>Simple Design by contract library supporting PreConditions and PostConditions</description>
         <releaseNotes>Summary of changes made in this release of the package.</releaseNotes>
@@ -16,8 +16,8 @@
         <tags>DbC, Design by contract, PreCondition, PostCondition, Code Contracts, contract programming, programming design-by-contract</tags>
     </metadata>
     <files>
-        <file src="bin\Release\Crom.DbC.dll" target="lib\Crom.DbC.dll" />
-        <file src="bin\Release\Crom.DbC.pdb" target="lib\Crom.DbC.pdb" />
-        <file src="bin\Release\Crom.DbC.xml" target="lib\Crom.DbC.xml" />
+        <file src="bin\Release\Rocket.DbC.dll" target="lib\Rocket.DbC.dll" />
+        <file src="bin\Release\Rocket.DbC.pdb" target="lib\Rocket.DbC.pdb" />
+        <file src="bin\Release\Rocket.DbC.xml" target="lib\Rocket.DbC.xml" />
     </files>
 </package>

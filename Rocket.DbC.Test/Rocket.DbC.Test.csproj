@@ -7,8 +7,8 @@
     <ProjectGuid>{F4548C00-7847-4413-A851-F5D81CE3B090}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Crom.DbC.Test</RootNamespace>
-    <AssemblyName>Crom.DbC.Test</AssemblyName>
+    <RootNamespace>Rocket.DbC.Test</RootNamespace>
+    <AssemblyName>Rocket.DbC.Test</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -57,13 +57,13 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Crom.DbC\Crom.DbC.csproj">
-      <Project>{a2f5b16a-8b03-4105-9303-f69bd8d236a4}</Project>
-      <Name>Crom.DbC</Name>
-    </ProjectReference>
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
   <ItemGroup>
-    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
+    <ProjectReference Include="..\Rocket.DbC\Rocket.DbC.csproj">
+      <Project>{a2f5b16a-8b03-4105-9303-f69bd8d236a4}</Project>
+      <Name>Rocket.DbC</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
