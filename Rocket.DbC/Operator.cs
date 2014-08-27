@@ -50,12 +50,11 @@ namespace Rocket.DbC
 
 		internal Exception Exception { get; set; }
 
-
-
 		/// <summary>
 		/// Perform an or evaluation for the specified constraints.
 		/// </summary>
 		/// <param name="func">The constraints.</param>
+		/// <returns>A <see cref="Operator{T}"/> for chaining.</returns>
 		/// <exception cref="System.ArgumentException">When no Constraints specified.</exception>
 		public Operator<T> Or(params Func<Condition<T>, Operator<T>>[] func)
 		{
