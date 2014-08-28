@@ -109,7 +109,7 @@ namespace Rocket.DbC.Test
 				Property = new DateTime(2014, 01, 01)
 			};
 
-			Require.That(() => obj.Property).IsNot.EqualTo(new DateTime(2014, 01, 01));
+			Require.That(() => obj.Property).IsNot.EqualTo(new DateTime(2014, 01, 01)).And.IsNot.EqualTo(new DateTime(2013, 01, 01));
 		}
 
 		[Test]
