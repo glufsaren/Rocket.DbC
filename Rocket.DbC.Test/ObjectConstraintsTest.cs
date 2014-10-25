@@ -7,6 +7,8 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
+using System;
+
 using NUnit.Framework;
 
 namespace Rocket.DbC.Test
@@ -49,7 +51,7 @@ namespace Rocket.DbC.Test
 		}
 
 		[Test]
-		[ExpectedException(typeof(PreConditionException))]
+        [ExpectedException(typeof(ArgumentNullException))]
 		public void When_null_not_expected_and_not_fulfilled_expect_exception()
 		{
 			var obj = new

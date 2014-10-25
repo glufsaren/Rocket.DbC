@@ -8,7 +8,7 @@
         <owners>John Tjust</owners>
         <licenseUrl>http://apache.org/licenses/LICENSE-2.0</licenseUrl>
         <projectUrl>https://bitbucket.org/glufsaren/rocket.dbc/overview</projectUrl>
-        <iconUrl>https://bytebucket.org/glufsaren/rocket.dbc/raw/e8e635a06a3d0cb5313936ad89df08fd3a0444fb/Logo.png?token=d0aa5744cc693c932fcb0f31d9c91a6daab179f4</iconUrl>
+        <iconUrl>https://bytebucket.org/glufsaren/rocket.dbc/raw/becff29633ae52a4d993581bf8b8e9123bd88ec0/Logo_icon.png</iconUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <description>Simple Design by contract library supporting PreConditions and PostConditions</description>
         <releaseNotes>Summary of changes made in this release of the package.</releaseNotes>
