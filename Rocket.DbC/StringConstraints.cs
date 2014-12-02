@@ -58,36 +58,6 @@ namespace Rocket.DbC
         }
 
         /// <summary>
-        /// Evaluates if a <see cref="string"/> is null. If negated the <see cref="string"/> can't be null.
-        /// </summary>
-        /// <param name="constraint">The constraint.</param>
-        /// <returns>An <see cref="Operator{T}"/> for chaining multiple constraints.</returns>
-        ////public static Operator<string> Null(this Constraint<string> constraint)
-        ////{
-        ////    Func<Member<string>, bool> predicate;
-        ////    Func<Member<string>, Exception> exceptionFactory;
-
-        ////    if (!constraint.Negate)
-        ////    {
-        ////        predicate = member =>
-        ////            member.Value == null;
-
-        ////        exceptionFactory = member =>
-        ////            constraint.Condition.CreateException(member.Name);
-        ////    }
-        ////    else
-        ////    {
-        ////        predicate = member =>
-        ////            member.Value != null;
-
-        ////        exceptionFactory = member =>
-        ////            new ArgumentNullException(member.Name);
-        ////    }
-
-        ////    return constraint.Evaluate(predicate, exceptionFactory, constraint.Throw);
-        ////}
-
-        /// <summary>
         /// Evaluates if a <see cref="string"/> is equal to a given value. 
         /// If negated the <see cref="string"/> not equal to the given value.
         /// </summary>
