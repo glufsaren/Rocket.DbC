@@ -13,11 +13,9 @@
         <description>Simple Design by contract library supporting PreConditions and PostConditions</description>
         <releaseNotes>Summary of changes made in this release of the package.</releaseNotes>
         <copyright>Copyright 2014</copyright>
-        <tags>DbC, Design by contract, PreCondition, PostCondition, Code Contracts, contract programming, programming design-by-contract</tags>
+        <tags>DbC Design by contract PreCondition PostCondition Code Contracts contract programming programming design-by-contract</tags>
     </metadata>
     <files>
         <file src="bin\Release\Rocket.DbC.dll" target="lib\Rocket.DbC.dll" />
-        <file src="bin\Release\Rocket.DbC.pdb" target="lib\Rocket.DbC.pdb" />
-        <file src="bin\Release\Rocket.DbC.xml" target="lib\Rocket.DbC.xml" />
     </files>
 </package>
