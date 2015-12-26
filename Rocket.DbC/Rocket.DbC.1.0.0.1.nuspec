@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
     <metadata>
         <id>Rocket.DbC</id>
-        <version>1.0.0.0</version>
+        <version>1.0.0.1</version>
         <title>Rocket.DbC</title>
         <authors>John Tjust</authors>
         <owners>John Tjust</owners>
@@ -13,7 +13,7 @@
         <description>Simple Design by contract library supporting PreConditions and PostConditions</description>
         <releaseNotes>Summary of changes made in this release of the package.</releaseNotes>
         <copyright>Copyright 2016</copyright>
-        <tags>DbC Design by contract PreCondition PostCondition Code Contracts contract programming programming design-by-contract</tags>
+        <tags>DbC Design by contract PreCondition PostCondition Code Contracts programming design-by-contract</tags>
     </metadata>
     <files>
         <file src="bin\Release\Rocket.DbC.dll" target="lib\Rocket.DbC.dll" />
