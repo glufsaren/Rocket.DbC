@@ -134,4 +134,4 @@ When using `Is` evaluates if a collection is null or empty. When using `IsNot` t
 ### About the author ###
 
 > Working with brilliant people has made me a decent developer. I like to produce clean and aesthetically appealing code.
-> - [John Tjust](https://bitbucket.org/glufsaren)
+> - [John Tjust](https://github.com/glufsaren/)
